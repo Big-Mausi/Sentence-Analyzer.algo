@@ -1,0 +1,118 @@
+BEGIN
+
+  SET set1 = [3, 1, 7, 9]
+  SET set2 = [2, 4, 1, 9, 3]
+  SET n1 = 4
+  SET n2 = 5
+  SET sum = 0
+  SET found = false
+
+  // Step 1: Check each element of set1 against set2
+  FOR i = 0 TO n1 - 1 DO
+    found = false
+    FOR j = 0 TO n2 - 1 DO
+      IF set1[i] = set2[j] THEN
+        found = true
+      END IF
+    END FOR
+    IF found = false THEN
+      sum = sum + set1[i]
+    END IF
+  END FOR
+
+  // Step 2: Vice versa — check each element of set2 against set1
+  FOR i = 0 TO n2 - 1 DO
+    found = false
+    FOR j = 0 TO n1 - 1 DO
+      IF set2[i] = set1[j] THEN
+        found = true
+      END IF
+    END FOR
+    IF found = false THEN
+      sum = sum + set2[i]
+    END IF
+  END FOR
+
+  WRITE "Sum of distinct elements: ", sum
+
+END
+
+
+PROCEDURE dot_product(v1[], v2[], n, VAR ps)
+
+  ps = 0
+  FOR i = 0 TO n - 1 DO
+    ps = ps + (v1[i] * v2[i])
+  END FOR
+
+END PROCEDURE
+
+BEGIN
+
+  READ n
+
+  FOR k = 1 TO n DO
+
+    READ size
+    SET v1[size]
+    SET v2[size]
+
+    FOR i = 0 TO size - 1 DO
+      READ v1[i]
+    END FOR
+
+    FOR i = 0 TO size - 1 DO
+      READ v2[i]
+    END FOR
+
+    SET ps = 0
+    dot_product(v1, v2, size, ps)
+
+    IF ps == 0 THEN
+      WRITE "Pair ", k, ": vectors are orthogonal"
+    ELSE
+      WRITE "Pair ", k, ": vectors are NOT orthogonal"
+    END IF
+
+  END FOR
+
+END
+
+FUNCTION dot_product(v1[], v2[], n) : INTEGER
+
+  SET ps = 0
+  FOR i = 0 TO n - 1 DO
+    ps = ps + (v1[i] * v2[i])
+  END FOR
+  RETURN ps
+
+END FUNCTION
+
+
+BEGIN
+
+  READ n
+
+  FOR k = 1 TO n DO
+
+    READ size
+    SET v1[size]
+    SET v2[size]
+
+    FOR i = 0 TO size - 1 DO
+      READ v1[i]
+    END FOR
+
+    FOR i = 0 TO size - 1 DO
+      READ v2[i]
+    END FOR
+
+    IF dot_product(v1, v2, size) == 0 THEN
+      WRITE "Pair ", k, ": vectors are orthogonal"
+    ELSE
+      WRITE "Pair ", k, ": vectors are NOT orthogonal"
+    END IF
+
+  END FOR
+
+END
