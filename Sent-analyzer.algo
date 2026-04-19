@@ -1,0 +1,39 @@
+BEGIN
+
+  SET lengthCount = 0
+  SET wordCount   = 0
+  SET vowelCount  = 0
+
+  READ ch
+
+  WHILE ch != '.'
+    
+    // Counter 1: every character adds to length
+    lengthCount = lengthCount + 1
+
+    // Counter 2: count spaces to find number of words
+    IF ch == ' ' THEN
+      wordCount = wordCount + 1
+    END IF
+
+    // Counter 3: check for vowels
+    IF ch == 'a' OR ch == 'e' OR ch == 'i' OR ch == 'o' OR ch == 'u' OR
+       ch == 'A' OR ch == 'E' OR ch == 'I' OR ch == 'O' OR ch == 'U' THEN
+      vowelCount = vowelCount + 1
+    END IF
+
+    READ ch
+
+  END WHILE
+
+  // The period is the last character, count it in length
+  lengthCount = lengthCount + 1
+
+  // Words = spaces + 1
+  wordCount = wordCount + 1
+
+  WRITE "Length: ", lengthCount
+  WRITE "Words: ",  wordCount
+  WRITE "Vowels: ", vowelCount
+
+END
